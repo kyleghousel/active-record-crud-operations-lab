@@ -25,7 +25,7 @@ class Movie < ActiveRecord::Base
   #   .find_movie_with_id
   #     returns the movie with the corresponding id (FAILED - 4)
   def self.find_movie_with_id(id)
-    Movie.find_by(id: id)
+    Movie.find(id)
   end
 
   #   .find_movie_with_attributes
@@ -44,22 +44,25 @@ class Movie < ActiveRecord::Base
   #   #update_with_attributes
   #     updates one movie (FAILED - 7)
   def update_with_attributes(attr)
-    Movie.
+    update(attr)
   end
 
   #   .update_all_titles
   #     updates the title of all the movies (FAILED - 8)
-  def self.update_all_titles
+  def self.update_all_titles(updated_titles)
+    Movie.update(title: updated_titles)
   end
 
   # Delete
   #   .delete_by_id
   #     deletes the record with the corresponding id (FAILED - 9)
-  def self.delete_by_id
+  def self.delete_by_id(id)
+    Movie.destroy(id)
   end
 
   #   .delete_all_movies
   #     deletes all the movies from the movies table (FAILED - 10)
   def self.delete_all_movies
+    Movie.destroy_all
   end
 end
